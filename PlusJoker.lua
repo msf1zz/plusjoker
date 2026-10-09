@@ -422,6 +422,9 @@ end
 MOD.reset_game_globals = function(run_start)
 	if run_start then
 		PlusJoker.begin_run()
+	else
+		-- Boss cashout queues this after ease_ante has applied the new ante.
+		PlusJoker.sync_run(false)
 	end
 end
 
@@ -437,11 +440,10 @@ end
 local ease_ante_ref = ease_ante
 function ease_ante(mod)
 	ease_ante_ref(mod)
+	-- Stay behind ease_ante's own event. A non-blockable event runs during
+	-- the pre-ante delay, sees the old ante, and skips the new copies.
 	G.E_MANAGER:add_event(Event({
-		trigger = 'after',
-		delay = 0,
-		blockable = false,
-		blocking = false,
+		trigger = 'immediate',
 		func = function()
 			PlusJoker.sync_run(false)
 			return true
