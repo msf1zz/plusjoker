@@ -1,0 +1,14 @@
+{
+	"id": "PlusJoker",
+	"name": "Plus Joker",
+	"display_name": "Plus Joker",
+	"author": ["msfizz"],
+	"description": "pick any joker you like + one each ante. isnpired by roffle.",
+	"prefix": "plusjoker",
+	"main_file": "PlusJoker.lua",
+	"priority": 100,
+	"badge_colour": "FE5F55",
+	"badge_text_colour": "FFFFFF",
+	"version": "1.0.0",
+	"dependencies": ["Steamodded"]
+}
